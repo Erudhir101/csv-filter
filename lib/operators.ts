@@ -1,0 +1,37 @@
+export const OPS_TEXT = [
+  { v: 'equals', l: 'Igual' },
+  { v: 'not_equals', l: '≠ Diferente' },
+  { v: 'contains', l: 'Contém' },
+  { v: 'not_contains', l: 'Não contém' },
+  { v: 'in', l: 'Em (lista)' },
+  { v: 'not_in', l: 'Não em (lista)' },
+  { v: 'is_null', l: 'É vazio / nulo' },
+  { v: 'is_not_null', l: 'Não é vazio' },
+];
+
+export const OPS_NUM = [
+  { v: 'equals', l: '= Igual' },
+  { v: 'not_equals', l: '≠ Diferente' },
+  { v: 'gt', l: '> Maior' },
+  { v: 'gte', l: '≥ Maior ou igual' },
+  { v: 'lt', l: '< Menor' },
+  { v: 'lte', l: '≤ Menor ou igual' },
+  { v: 'between', l: 'Entre' },
+  { v: 'is_null', l: 'É vazio / nulo' },
+  { v: 'is_not_null', l: 'Não é vazio' },
+];
+
+export const OPS_DATE = [
+  { v: 'equals', l: 'Igual' },
+  { v: 'date_after', l: 'Após' },
+  { v: 'date_before', l: 'Antes' },
+  { v: 'date_between', l: 'Entre' },
+  { v: 'is_null', l: 'É vazio / nulo' },
+  { v: 'is_not_null', l: 'Não é vazio' },
+];
+
+export function getOpsForType(type: 'text' | 'number' | 'date') {
+  if (type === 'number') return OPS_NUM;
+  if (type === 'date') return OPS_DATE;
+  return OPS_TEXT;
+}

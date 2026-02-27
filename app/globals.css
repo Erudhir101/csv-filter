@@ -417,3 +417,209 @@ tbody tr:hover td { background: var(--bg-hover); color: var(--text-1); }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes slideUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* ===== FILTER PAGE (/filters/[id]) ===== */
+
+.fp-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-0);
+}
+
+.fp-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  min-height: 52px;
+}
+
+.fp-title {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-0);
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.fp-title:hover { text-decoration: underline; text-decoration-style: dashed; }
+
+.fp-title-input {
+  flex: 1;
+  background: var(--bg-3);
+  border: 1px solid var(--border-focus);
+  border-radius: 4px;
+  color: var(--text-0);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 4px 8px;
+  outline: none;
+}
+
+/* ── Tabs ── */
+.fp-tabs {
+  display: flex;
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--border);
+  padding: 0 12px;
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+
+.fp-tab {
+  padding: 10px 16px;
+  border: none;
+  background: none;
+  color: var(--text-3);
+  font-size: 13px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.fp-tab:hover { color: var(--text-1); }
+.fp-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+
+.fp-tab-badge {
+  background: var(--blue-bg);
+  color: var(--blue);
+  border-radius: 10px;
+  padding: 1px 6px;
+  font-size: 10px;
+  font-weight: 600;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* ── Tab panel ── */
+.fp-panel {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 16px;
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+/* ── Table area ── */
+.fp-table-area {
+  flex: 1;
+  overflow: auto;
+}
+
+/* ===== RULE CARDS (color rules + formula columns) ===== */
+
+.rule-card {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+.rule-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px;
+  background: var(--bg-3);
+  border-bottom: 1px solid var(--border);
+  gap: 8px;
+}
+
+.rule-name-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-0);
+  font-size: 13px;
+  font-weight: 500;
+  outline: none;
+}
+
+.rule-name-input:focus {
+  background: var(--bg-2);
+  border-radius: 3px;
+  padding: 1px 4px;
+}
+
+.rule-card-body {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rule-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.rule-row label {
+  font-size: 11px;
+  color: var(--text-3);
+  min-width: 58px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.rule-row select,
+.rule-row input[type='text'],
+.rule-row input[type='date'],
+.rule-row input[type='number'] {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  color: var(--text-1);
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  outline: none;
+}
+
+.rule-row select:focus,
+.rule-row input:focus { border-color: var(--border-focus); }
+
+.rule-value-input { flex: 1; min-width: 80px; }
+
+.color-picker {
+  width: 32px;
+  height: 26px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px;
+  cursor: pointer;
+  background: var(--bg-3);
+}
+
+/* ── Formula input ── */
+.formula-input {
+  flex: 1;
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  color: var(--green);
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: 'Courier New', Courier, monospace;
+  outline: none;
+  min-width: 180px;
+}
+
+.formula-input:focus { border-color: var(--border-focus); }

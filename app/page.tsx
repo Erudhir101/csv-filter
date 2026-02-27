@@ -222,7 +222,7 @@ export default function Home() {
   };
 
   // Date formarter
-  function formatDate(str) {
+  function formatDate(str: string) {
     const [date, time] = str.split(" ");
     const [y, m, d] = date.split("-");
     return `${time} - ${d}/${m}/${y}`;
@@ -644,6 +644,14 @@ export default function Home() {
                         </div>
                       </div>
                       <div className="saved-actions">
+                        <a
+                          href={`/filters/${f.id}`}
+                          className="btn btn-sm btn-icon btn-blue"
+                          title="Abrir página do filtro"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          ↗
+                        </a>
                         <button
                           className="btn btn-sm btn-icon btn-ghost"
                           onClick={(e) => exportFilter(f, e)}

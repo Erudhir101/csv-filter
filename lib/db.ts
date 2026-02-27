@@ -216,7 +216,7 @@ export function importCSV(headers: string[], rows: string[][]): { rowCount: numb
 
 export interface FilterCondition {
   column: string;
-  operator: 'equals' | 'not_equals' | 'contains' | 'not_contains' | 'gt' | 'gte' | 'lt' | 'lte' | 'between' | 'in' | 'date_after' | 'date_before' | 'date_between';
+  operator: 'equals' | 'not_equals' | 'contains' | 'not_contains' | 'gt' | 'gte' | 'lt' | 'lte' | 'between' | 'in' | 'not_in' | 'is_null' | 'is_not_null' | 'date_after' | 'date_before' | 'date_between';
   value: string | number;
   value2?: string | number;
 }
@@ -227,6 +227,8 @@ export interface SavedFilter {
   description?: string;
   selectedColumns: string[];
   conditions: FilterCondition[];
+  colorRules?: import('./types').ColorRule[];
+  formulaColumns?: import('./types').FormulaColumn[];
   createdAt: string;
   updatedAt?: string;
 }
@@ -264,6 +266,15 @@ function buildWhereClause(conditions: FilterCondition[]): { sql: string; params:
         clauses.push(`${col} IN (${vals.map(() => '?').join(',')})`);
         params.push(...vals); break;
       }
+      case 'not_in': {
+        const vals = String(c.value).split(',').map(v => v.trim());
+        clauses.push(`${col} NOT IN (${vals.map(() => '?').join(',')})`);
+        params.push(...vals); break;
+      }
+      case 'is_null':
+        clauses.push(`(${col} IS NULL OR ${col} = '')`); break;
+      case 'is_not_null':
+        clauses.push(`(${col} IS NOT NULL AND ${col} != '')`); break;
       case 'date_after':
         clauses.push(`${col} >= ?`); params.push(c.value); break;
       case 'date_before':
